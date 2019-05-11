@@ -48,6 +48,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   npm run deploy
   ```
 
+  再到 `repo setting` 開啟 Github Pages
+
+  並設定 Sorece 如下圖
+
+  ![pages](https://github.com/kennedy0527/TwMapTest/blob/master/githubpages.png?raw=true)
+  
+
 ## 資料夾結構
 
 `assets` 資料夾內 包含`依各國名稱`建立的資料夾 於其內 `topoJson` 跟 `data` 資料
