@@ -108,7 +108,7 @@ export default class Map extends Component {
             MapManager.setCountyData(COUNTYCODE, {
               name: data[i].county_name,
               data: data[i].county_data,
-              description: data[i].description
+              description: data[i].county_description
             })
           } else {
             MapManager.setCountyData(COUNTYCODE, {

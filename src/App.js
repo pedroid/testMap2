@@ -140,9 +140,9 @@ export default class App extends Component {
     }
   }
   setCountyData = () => {
-    const { selectedCounty } = this.state;
+    const { selectedCounty, countyForm } = this.state;
     const { code } = JSON.parse(selectedCounty);
-    const data = this.countyData.value;
+    const data = countyForm.data;
     MapManager.set_county_data(code, data);
   }
   getCountyDescription = () => {
@@ -154,9 +154,9 @@ export default class App extends Component {
     }
   }
   setCountyDescription = () => {
-    const { selectedCounty } = this.state;
+    const { selectedCounty, countyForm } = this.state;
     const { code } = JSON.parse(selectedCounty);
-    const data = this.countyDescription.value;
+    const data = countyForm.description;
     MapManager.set_county_description(code, data);
   }
   toTown = () => {
@@ -184,9 +184,9 @@ export default class App extends Component {
     }
   }
   setTownshipData = () => {
-    const { selectedTown } = this.state;
+    const { selectedTown, townshipForm } = this.state;
     const { code } = JSON.parse(selectedTown);
-    const data = this.townshipData.value;
+    const data = townshipForm.data;
 
     MapManager.set_township_data(code, data)
   }
@@ -199,9 +199,9 @@ export default class App extends Component {
     }
   }
   setTownshipDescription = () => {
-    const { selectedTown } = this.state;
+    const { selectedTown, townshipForm } = this.state;
     const { code } = JSON.parse(selectedTown);
-    const data = this.townshipDescription.value;
+    const data = townshipForm.description;
     MapManager.set_township_description(code, data)
   }
   toVillage = () => {
@@ -229,9 +229,9 @@ export default class App extends Component {
     }
   }
   setVillageData = () => {
-    const { selectedVillage } = this.state;
+    const { selectedVillage, villageForm } = this.state;
     const { code } = JSON.parse(selectedVillage);
-    const data = this.villageData.value;
+    const data = villageForm.data;
     MapManager.set_village_data(code, data)
   }
   getVillageDescription = () => {
@@ -243,10 +243,65 @@ export default class App extends Component {
     }
   }
   setVillageDescription = () => {
-    const { selectedVillage } = this.state;
+    const { selectedVillage, villageForm } = this.state;
     const { code } = JSON.parse(selectedVillage);
-    const data = this.villageDescription.value;
+    const data = villageForm.description;
     MapManager.set_village_description(code, data)
+  }
+  onCountyDataChange = (e) => {
+    const { countyForm } = this.state;
+    this.setState({
+      countyForm: {
+        ...countyForm,
+        data: e.target.value
+      }
+    })
+  }
+  onCountyDesChange = (e) => {
+    const { countyForm } = this.state;
+    this.setState({
+      countyForm: {
+        ...countyForm,
+        description: e.target.value
+      }
+    })
+  }
+
+  onTownshipDataChange = (e) => {
+    const { townshipForm } = this.state;
+    this.setState({
+      townshipForm: {
+        ...townshipForm,
+        data: e.target.value
+      }
+    })
+  }
+  onTownshipDesChange = (e) => {
+    const { townshipForm } = this.state;
+    this.setState({
+      townshipForm: {
+        ...townshipForm,
+        description: e.target.value
+      }
+    })
+  }
+  onVillageDataChange = (e) => {
+    const { villageForm } = this.state;
+    this.setState({
+      villageForm: {
+        ...villageForm,
+        data: e.target.value
+      }
+    })
+  }
+  onVillageDesChange = (e) => {
+    const { villageForm } = this.state;
+    this.setState({
+      villageForm: {
+        ...villageForm,
+        description: e.target.value
+      }
+    })
   }
   backToTopLevel = () => {
     this.map.zoom_fit();
@@ -258,6 +313,7 @@ export default class App extends Component {
     switch (type) {
       case 'county': {
         const { name, data, description } = MapManager.getData('county', code);
+
         this.setState({
           selectedInfo: {
             name,
@@ -411,11 +467,11 @@ export default class App extends Component {
                 <input type="button" onClick={this.getCountyDescription} value="取得描述" />
               </div>
               <div>
-                <input type="text" ref={ref => this.countyData = ref} defaultValue={countyForm.data} />
+                <input type="text" value={countyForm.data} onChange={this.onCountyDataChange} />
                 <input type="button" onClick={this.setCountyData} value="設定資料" />
               </div>
               <div>
-                <input type="text" ref={ref => this.countyDescription = ref} defaultValue={countyForm.description} />
+                <input type="text" value={countyForm.description} onChange={this.onCountyDesChange} />
                 <input type="button" onClick={this.setCountyDescription} value="設定描述" />
               </div>
             </div>
@@ -446,11 +502,11 @@ export default class App extends Component {
                 <input type="button" onClick={this.getTownshipDescription} value="取得描述" />
               </div>
               <div>
-                <input type="text" ref={ref => this.townshipData = ref} defaultValue={townshipForm.data} />
+                <input type="text" value={townshipForm.data} onChange={this.onTownshipDataChange} />
                 <input type="button" onClick={this.setTownshipData} value="設定資料" />
               </div>
               <div>
-                <input type="text" ref={ref => this.townshipDescription = ref} defaultValue={townshipForm.description} />
+                <input type="text" value={townshipForm.description} onChange={this.onTownshipDesChange} />
                 <input type="button" onClick={this.setTownshipDescription} value="設定描述" />
               </div>
             </div>
@@ -481,11 +537,11 @@ export default class App extends Component {
                 <input type="button" onClick={this.getVillageDescription} value="取得描述" />
               </div>
               <div>
-                <input type="text" ref={ref => this.villageData = ref} defaultValue={villageForm.data} />
+                <input type="text" value={villageForm.data} onChange={this.onVillageDataChange} />
                 <input type="button" onClick={this.setVillageData} value="設定資料" />
               </div>
               <div>
-                <input type="text" ref={ref => this.villageDescription = ref} defaultValue={villageForm.description} />
+                <input type="text" value={villageForm.description} onChange={this.onVillageDesChange} />
                 <input type="button" onClick={this.setVillageDescription} value="設定描述" />
               </div>
             </div>
@@ -521,7 +577,7 @@ export default class App extends Component {
           </div>
           <InfoModal info={info} />
         </div>
-      </div>
+      </div >
     );
   }
 }
