@@ -14,7 +14,8 @@
     "react-scripts": "3.0.0",
     "save-svg-as-png": "^1.4.12",
     "serve": "^11.0.0",
-    "topojson": "^3.0.2"
+    "topojson": "^3.0.2",
+    "yarn": "^1.16.0"
   },
   "scripts": {
     "dev": "react-scripts start",
@@ -26,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://kennedy0527.github.io/TwMapTest/",
+  "homepage": "https://pedroid.github.io/testMap2/",
   "eslintConfig": {
     "extends": "react-app"
   },
