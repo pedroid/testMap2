@@ -39,7 +39,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   ```
     {
       ...
-      "homepage": "https://kennedy0527.github.io/TwMapTest/",
+      "homepage": "https://pedroid.github.io/TwMapTest/",
       ...
     }
   ```
